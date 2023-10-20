@@ -1,0 +1,40 @@
+<div class="wrapper">
+  <h1 class="title tui-text_h1">Вход</h1>
+
+  <form class="form" [formGroup]="form" autocomplete="off">
+    <label class="field" tuiLabel="E-mail">
+      <tui-input [tuiTextfieldLabelOutside]="true" formControlName="email">
+        Введите E-mail
+        <input tuiTextfield type="email" placeholder="Введите E-mail" />
+      </tui-input>
+      <tui-error
+        formControlName="email"
+        [error]="[] | tuiFieldError | async"
+      ></tui-error>
+    </label>
+    <label class="field" tuiLabel="Пароль">
+      <tui-input-password
+        [tuiTextfieldLabelOutside]="true"
+        formControlName="password"
+      >
+        Введите пароль
+        <input
+          tuiTextfield
+          type="password"
+          placeholder="Введите пароль"
+          autocomplete="new-password"
+        />
+      </tui-input-password>
+      <tui-error
+        formControlName="password"
+        [error]="[] | tuiFieldError | async"
+      ></tui-error>
+    </label>
+  </form>
+  <div class="buttons">
+    <button tuiButton appearance="secondary" (click)="register()">
+      Регистрация
+    </button>
+    <button tuiButton appearance="primary" (click)="login()">Войти</button>
+  </div>
+</div>
