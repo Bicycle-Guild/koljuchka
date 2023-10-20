@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UImodules } from '../ui-modules';
 import { HttpClientModule } from '@angular/common/http';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-auth',

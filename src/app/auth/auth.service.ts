@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from '../local-storage.service';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject, of, switchMap } from 'rxjs';
+import { Subject, of, switchMap } from 'rxjs';
 import { UserService } from '../user.service';
 
 @Injectable({
