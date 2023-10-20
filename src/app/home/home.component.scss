@@ -1,0 +1,8 @@
+@import "@taiga-ui/core/styles/taiga-ui-local.scss";
+ 
+.fade {
+    @include scrollbar-hidden();
+    width: 480px;
+    height: 240px;
+    overflow: auto;
+}
