@@ -17,7 +17,7 @@ export const testsMock: Test[] = [
     shown: true,
   },
   {
-    id: '123124',
+    id: '123125',
     type: TestType.Intern,
     name: 'Стажировка 2',
     description:
