@@ -6,11 +6,12 @@ import { of, shareReplay, switchMap, take } from 'rxjs';
 import { UImodules } from 'src/app/ui-modules';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TEST_TYPE_LABELS, TestType } from 'src/app/models/Test';
+import { TasksEditComponent } from '../tasks-edit/tasks-edit.component';
 
 @Component({
   selector: 'app-test',
   standalone: true,
-  imports: [CommonModule, ...UImodules, ReactiveFormsModule],
+  imports: [CommonModule, ...UImodules, ReactiveFormsModule, TasksEditComponent],
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.scss'],
 })
