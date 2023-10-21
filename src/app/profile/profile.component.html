@@ -1,44 +1,48 @@
-<div class="container  wrapper">
+<div class="container wrapper">
   <div class="left">
-    <h3 class="tui-text_h3">Профиль</h3>
+    <h3 class="tui-text_h3 tui-space_bottom-4">Профиль</h3>
     <form class="b-form" [formGroup]="testForm">
-      <p>
-        <tui-input tuiTextfieldSize="l" formControlName="name">
-          ФИО
-          <input tuiTextfield type="text" />
-        </tui-input>
-      </p>
-      <p>
-        <tui-input
-          tuiTextfieldSize="l"
-          formControlName="age"
-        >
-          Возраст
-          <input tuiTextfield type="number" />
-        </tui-input>
-      </p>
-      <p>
-        <tui-input
+      <tui-input
+        class="tui-space_bottom-4"
         tuiTextfieldSize="l"
-          formControlName="link"
-        >
-          Ссылка на  резюме
-          <input tuiTextfield placeholder="https://test.ru/1234"/>
-        </tui-input>
-      </p>
-      <p>
-        <tui-input
+        formControlName="name"
+      >
+        ФИО
+        <input tuiTextfield type="text" />
+      </tui-input>
+      <tui-input
+        class="tui-space_bottom-4"
         tuiTextfieldSize="l"
-          formControlName="education"
-        >
-          Образование
-          <input tuiTextfield placeholder="Бакалавриат"/>
-        </tui-input>
-      </p>
+        formControlName="age"
+      >
+        Возраст
+        <input tuiTextfield type="number" />
+      </tui-input>
+      <tui-input
+        class="tui-space_bottom-4"
+        tuiTextfieldSize="l"
+        formControlName="link"
+      >
+        Ссылка на резюме
+        <input tuiTextfield placeholder="https://test.ru/1234" />
+      </tui-input>
+
+      <tui-select class="tui-space_bottom-4" formControlName="education">
+        Character
+        <input tuiTextfield placeholder="Choose your hero" />
+        <tui-data-list-wrapper
+          *tuiDataList
+          [items]="educationTypes"
+        ></tui-data-list-wrapper>
+      </tui-select>
     </form>
+    <button tuiButton appearance="secondary" size="m">Сохранить</button>
   </div>
   <div class="right">
-    <h3 class="tui-text_h6">Мои заявки</h3>
-    <app-application *ngFor="let application of applications" [application]="application"></app-application>
-</div>
+    <h3 class="tui-text_h6 tui-space_bottom-8 title">Мои заявки</h3>
+    <app-application
+      *ngFor="let application of applications"
+      [application]="application"
+    ></app-application>
+  </div>
 </div>

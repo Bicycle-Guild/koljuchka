@@ -18,6 +18,7 @@ import {
   TuiTextfieldControllerModule,
   TuiLoaderModule,
   TuiGroupModule,
+  TuiNotificationModule,
   TuiDropdownModule,
 } from '@taiga-ui/core';
 
@@ -31,6 +32,7 @@ import {
   TuiMultiSelectModule,
   TuiComboBoxModule,
   TuiTabsModule,
+  
   TuiTextareaModule,
   TuiLineClampModule,
   TuiTreeModule,
@@ -57,6 +59,7 @@ export const UImodules = [
   TuiModeModule,
   TuiLabelModule,
   TuiLinkModule,
+  TuiNotificationModule,
   TuiRootModule,
   TuiScrollbarModule,
   TuiSvgModule,

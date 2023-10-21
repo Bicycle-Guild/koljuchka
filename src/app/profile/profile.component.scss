@@ -1,11 +1,21 @@
 .wrapper {
   display: flex;
+  flex-direction: row;
+  gap: 12px;
+  .titles {
+    flex-direction: row;
+  }
   .left {
     flex-grow: 4;
+    gap: 12px
   }
   .right {
     flex-grow: 8;
+    gap: 16px
   }
+}
+.title {
+    margin: 10px;
 }
 .profile {
   display: flex;

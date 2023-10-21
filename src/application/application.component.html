@@ -1,5 +1,7 @@
 <div class="card" *ngIf="subject$ | async as subject">
-    <p>{{subject.name}}</p>
-    <p>{{application.status}}</p>
+  <tui-notification [status]="appearanceByStatus(application.status)">
+    <h6 class="tui-text_body-m name">{{ subject.name }}</h6>
+    <p>{{ application.status }}</p>
     <button tuiButton appearance="outline" size="s">Подробнее</button>
+  </tui-notification>
 </div>
