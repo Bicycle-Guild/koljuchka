@@ -1,0 +1,12 @@
+<div class="info">
+  <p class="tui-text_body-s">{{ getTypeLabel() }}</p>
+  <p class="tui-text_body-l">{{ test.name }}</p>
+</div>
+<button
+  tuiIconButton
+  icon="tuiIconEdit3"
+  shape="rounded"
+  size="s"
+  appearance="secondary"
+  [routerLink]="['test', test.id]"
+></button>

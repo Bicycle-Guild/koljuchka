@@ -1,0 +1,10 @@
+@import "@taiga-ui/core/styles/taiga-ui-local.scss";
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include shadow(6);
+  border-radius: var(--tui-radius-m);
+  padding: 20px 24px;
+}

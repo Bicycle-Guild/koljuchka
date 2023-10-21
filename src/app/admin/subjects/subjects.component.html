@@ -1,3 +1,8 @@
-<div class="subject-cards">
-    <app-subject-card *ngFor="let card of cards" [subject]="card"></app-subject-card>   
+<div class="container">
+  <div class="grid">
+    <app-subject-card
+      *ngFor="let subject of subjects$ | async"
+      [subject]="subject"
+    ></app-subject-card>
+  </div>
 </div>
