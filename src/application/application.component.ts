@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Application } from 'src/app/models/Application';
-import { SubjectsService } from 'src/app/subjects.service';
-import { Subject } from 'src/app/models/Subject';
+import { Application } from '../app/models/Application';
+import { SubjectsService } from '../app/subjects.service';
+import { Subject } from '../app/models/Subject';
 import { Observable } from 'rxjs';
-import { UImodules } from 'src/app/ui-modules';
+import { UImodules } from '../app/ui-modules';
+
+type status = 'accepted' | 'declined' | 'moderation';
 
 @Component({
   selector: 'app-application',
@@ -22,5 +24,13 @@ export class ApplicationComponent implements OnInit {
   ngOnInit(): void {
     if (this.application)
       this.subject$ = this._subjectsService.getSubjectByID(this.application.id);
+  }
+  appearanceByStatus(status: status) {
+    const typeValues = {
+      accepted: 'success' as const,
+      declined: 'error' as const,
+      moderation: 'info' as const,
+    };
+    return typeValues[status];
   }
 }

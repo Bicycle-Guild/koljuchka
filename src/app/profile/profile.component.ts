@@ -13,6 +13,7 @@ import { ApplicationComponent } from 'src/application/application.component';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
+  readonly educationTypes = ['Бакалавриат', 'Среднеспециальное', 'Магистратура', 'Нет'];
   readonly testForm = new FormGroup({
     name: new FormControl('Иванов Иван Иваныч'),
     age: new FormControl(21),
