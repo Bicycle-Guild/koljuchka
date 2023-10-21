@@ -1,0 +1,10 @@
+<div *ngIf="tasks$ | async as tasks">
+  <div *ngFor="let task of tasks">
+      <p>{{ task.title }}</p>
+      <p>{{ task.description }}</p>
+      <p>{{ task.type }}</p>
+      <div *ngFor="let answer of task.answers">
+        <p>{{ answer.value }}</p>
+      </div>
+  </div>
+</div>
