@@ -1,6 +1,19 @@
-<div class="wrapper">
-  <div class="tasks-form"></div>
-  <div class="text-edit">
-    <tui-textarea [formControl]="form"></tui-textarea>
+<div class="container">
+  <div class="wrapper">
+    <div class="left">
+      <app-test-card
+        *ngFor="let test of tests$ | async"
+        [test]="test"
+      ></app-test-card>
+    </div>
+    <div class="right">
+      <form class="form" [formGroup]="form">
+        <tui-input formControlName="name">
+          Название
+          <input tuiTextfield />
+        </tui-input>
+        <tui-textarea formControlName="description"> Описание </tui-textarea>
+      </form>
+    </div>
   </div>
 </div>
