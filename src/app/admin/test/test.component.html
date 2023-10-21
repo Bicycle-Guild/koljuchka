@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="wrapper">
+    <div class="left">left</div>
+    <div class="right">
+      <form class="form" [formGroup]="form">
+        <tui-input formControlName="name">
+          Название
+          <input tuiTextfield />
+        </tui-input>
+        <tui-textarea formControlName="description">Описание</tui-textarea>
+        <tui-select [valueContent]="typeContent" formControlName="type">
+          Выберите тип теста
+          <tui-data-list-wrapper
+            *tuiDataList
+            [itemContent]="typeContent"
+            [items]="types"
+          >
+          </tui-data-list-wrapper>
+        </tui-select>
+        <ng-template #typeContent let-item>
+          {{ item.label }}
+        </ng-template>
+      </form>
+    </div>
+  </div>
+</div>
