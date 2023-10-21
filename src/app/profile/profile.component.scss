@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  .left {
+    flex-grow: 4;
+  }
+  .right {
+    flex-grow: 8;
+  }
+}
+.profile {
+  display: flex;
+  width: 372px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}

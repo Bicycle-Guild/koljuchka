@@ -29,7 +29,7 @@ export class TestComponent {
   form = new FormGroup({
     name: new FormControl(''),
     description: new FormControl(''),
-    type: new FormControl(''),
+    type: new FormControl<{ value: string; label: string } | null>(null),
   });
 
   test$ = this._activatedRoute.paramMap.pipe(
@@ -47,11 +47,18 @@ export class TestComponent {
     private readonly _activatedRoute: ActivatedRoute,
     private readonly _testsService: TestsService
   ) {
-    this.test$.pipe(take(1)).subscribe((subject) => {
+    this.test$.pipe(take(1)).subscribe((test) => {
+      console.log(test?.type || '');
+
       this.form.patchValue({
-        name: subject?.name || '',
-        description: subject?.description || '',
-        type: subject?.type || '',
+        name: test?.name || '',
+        description: test?.description || '',
+        type: test
+          ? {
+              value: test.type,
+              label: TEST_TYPE_LABELS[test.type],
+            }
+          : null,
       });
     });
   }

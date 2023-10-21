@@ -14,6 +14,6 @@ export interface Test extends Entity {
     type: TestType;
     name: string;
     description: string;
-    tasks: any[];
     shown: boolean;
+    tasks: any[];
 }
