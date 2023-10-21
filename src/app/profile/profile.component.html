@@ -1,0 +1,44 @@
+<div class="container  wrapper">
+  <div class="left">
+    <h3 class="tui-text_h3">Профиль</h3>
+    <form class="b-form" [formGroup]="testForm">
+      <p>
+        <tui-input tuiTextfieldSize="l" formControlName="name">
+          ФИО
+          <input tuiTextfield type="text" />
+        </tui-input>
+      </p>
+      <p>
+        <tui-input
+          tuiTextfieldSize="l"
+          formControlName="age"
+        >
+          Возраст
+          <input tuiTextfield type="number" />
+        </tui-input>
+      </p>
+      <p>
+        <tui-input
+        tuiTextfieldSize="l"
+          formControlName="link"
+        >
+          Ссылка на  резюме
+          <input tuiTextfield placeholder="https://test.ru/1234"/>
+        </tui-input>
+      </p>
+      <p>
+        <tui-input
+        tuiTextfieldSize="l"
+          formControlName="education"
+        >
+          Образование
+          <input tuiTextfield placeholder="Бакалавриат"/>
+        </tui-input>
+      </p>
+    </form>
+  </div>
+  <div class="right">
+    <h3 class="tui-text_h6">Мои заявки</h3>
+    <app-application *ngFor="let application of applications" [application]="application"></app-application>
+</div>
+</div>

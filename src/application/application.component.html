@@ -1,0 +1,5 @@
+<div class="card" *ngIf="subject$ | async as subject">
+    <p>{{subject.name}}</p>
+    <p>{{application.status}}</p>
+    <button tuiButton appearance="outline" size="s">Подробнее</button>
+</div>
