@@ -8,7 +8,6 @@ export const testsMock: Test[] = [
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur at ab eveniet doloremque ducimus atque fugiat eos, expedita suscipit dicta architecto, harum facilis delectus, ex sequi quod vero voluptatem ut!',
     shown: true,
-    tasks: [],
   },
   {
     id: '123124',
@@ -16,7 +15,6 @@ export const testsMock: Test[] = [
     name: 'Стажировка 1',
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
     shown: true,
-    tasks: [],
   },
   {
     id: '123124',
@@ -25,6 +23,5 @@ export const testsMock: Test[] = [
     description:
       'Consectetur at ab eveniet doloremque ducimus atque fugiat eos, expedita suscipit dicta architecto, harum facilis delectus, ex sequi quod vero voluptatem ut!',
     shown: false,
-    tasks: [],
   },
 ];

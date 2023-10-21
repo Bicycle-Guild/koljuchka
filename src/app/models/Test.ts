@@ -15,5 +15,4 @@ export interface Test extends Entity {
     name: string;
     description: string;
     shown: boolean;
-    tasks: any[];
 }

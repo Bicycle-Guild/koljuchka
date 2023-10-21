@@ -8,7 +8,6 @@ export const subjectCards: Subject[] = [
       Doloribus nemo quidem sit, soluta possimus quis sequi accusantium ab in veritatis architecto
       perspiciatis laudantium blanditiis, adipisci obcaecati vitae ducimus, ratione amet.
       `,
-    tests: [],
   },
   {
     id: '1',
@@ -16,7 +15,6 @@ export const subjectCards: Subject[] = [
     description: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
       Doloribus nemo quidem sit, soluta possimus quis sequi accusantium ab in veritatis architecto
       perspiciatis laudantium blanditiis, adipisci obcaecati vitae ducimus, ratione amet.`,
-    tests: [],
   },
   {
     id: '5',
@@ -24,6 +22,5 @@ export const subjectCards: Subject[] = [
     description: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
       Doloribus nemo quidem sit, soluta possimus quis sequi accusantium ab in veritatis architecto
       perspiciatis laudantium blanditiis, adipisci obcaecati vitae ducimus, ratione amet.`,
-    tests: [],
   },
 ];
