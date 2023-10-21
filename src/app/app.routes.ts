@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { SubjectComponent } from './admin/subject/subject.component';
+import { SubjectsComponent } from './admin/subjects/subjects.component';
 
 export const routes: Routes = [
   {
@@ -7,8 +9,18 @@ export const routes: Routes = [
       import('./home/home.component').then((mod) => mod.HomeComponent),
   },
   {
-    path: 'auth',
+    path: 'admin',
     loadComponent: () =>
-      import('./auth/auth.component').then((mod) => mod.AuthComponent),
+      import('./admin/admin.component').then((mod) => mod.AdminComponent),
+    children: [
+      {
+        path: 'subjects',
+        component: SubjectsComponent,
+      },
+      {
+        path: 'subjects/:id',
+        component: SubjectComponent,
+      },
+    ],
   },
 ];
