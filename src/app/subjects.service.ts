@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Subject } from './models/Subject';
-import { subjectCards } from './mocks/subject-cards';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class SubjectsService {
+  private readonly _apiUrl = 'http://130.193.53.133/api/';
+
+  constructor(private readonly _httpClient: HttpClient) {}
+
   getSubjects(): Observable<Subject[]> {
-    return of(subjectCards);
+    return this._httpClient.get<Subject[]>(`${this._apiUrl}subjects`);
   }
-  getSubjectByID(id: string): Observable<Subject | undefined> {
-    return of(subjectCards.find((subject) => subject.id === id));
+
+  getSubjectByID(id: string): Observable<Subject> {
+    return this._httpClient.get<Subject>(`${this._apiUrl}subjects/${id}`);
   }
 }

@@ -6,12 +6,19 @@ import { of, shareReplay, switchMap, take } from 'rxjs';
 import { UImodules } from 'src/app/ui-modules';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TEST_TYPE_LABELS, TestType } from 'src/app/models/Test';
-import { TasksEditComponent } from '../tasks-edit/tasks-edit.component';
+import { TasksService } from 'src/app/tasks.service';
+import { TaskEditComponent } from '../tasks-edit/tasks-edit.component';
+import { Task } from 'src/app/models/Task';
 
 @Component({
   selector: 'app-test',
   standalone: true,
-  imports: [CommonModule, ...UImodules, ReactiveFormsModule, TasksEditComponent],
+  imports: [
+    CommonModule,
+    ...UImodules,
+    ReactiveFormsModule,
+    TaskEditComponent,
+  ],
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.scss'],
 })
@@ -44,9 +51,20 @@ export class TestComponent {
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
+  tasks$ = this.test$.pipe(
+    switchMap((test) => {
+      if (!test) {
+        return of([]);
+      }
+
+      return this._tasksService.getTaskByTestId(test.id);
+    })
+  );
+
   constructor(
     private readonly _activatedRoute: ActivatedRoute,
-    private readonly _testsService: TestsService
+    private readonly _testsService: TestsService,
+    private readonly _tasksService: TasksService
   ) {
     this.test$.pipe(take(1)).subscribe((test) => {
       console.log(test?.type || '');
@@ -62,5 +80,9 @@ export class TestComponent {
           : null,
       });
     });
+  }
+
+  changeTask(change: Partial<Task>) {
+    console.log(change);
   }
 }

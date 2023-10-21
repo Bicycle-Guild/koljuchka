@@ -1,35 +1,85 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UImodules } from 'src/app/ui-modules';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TasksService } from 'src/app/tasks.service';
-import { Observable, take } from 'rxjs';
-import { Task } from 'src/app/models/Task';
+import { TASK_TYPE_LABELS, Task, TaskType } from 'src/app/models/Task';
+import { map, takeUntil } from 'rxjs';
+import { TuiDestroyService } from '@taiga-ui/cdk';
 
 @Component({
-  selector: 'app-tasks-edit',
+  selector: 'app-task-edit',
   standalone: true,
   imports: [CommonModule, ...UImodules, ReactiveFormsModule],
-  providers: [TasksService],
+  providers: [TasksService, TuiDestroyService],
   templateUrl: './tasks-edit.component.html',
   styleUrls: ['./tasks-edit.component.scss'],
 })
-export class TasksEditComponent implements OnInit {
-  @Input() testId!: string;
-  tasks$!: Observable<Task[]>;
+export class TaskEditComponent implements OnChanges {
+  @Input({ required: true }) task!: Partial<Task>;
 
-  readonly types = ['multi', 'single', 'full'];
+  @Output() changed = new EventEmitter<Partial<Task>>();
 
-  constructor(private _taskService: TasksService) {}
+  readonly types = [
+    {
+      value: TaskType.SINGLE,
+      label: TASK_TYPE_LABELS[TaskType.SINGLE],
+    },
+    {
+      value: TaskType.FULL,
+      label: TASK_TYPE_LABELS[TaskType.FULL],
+    },
+  ];
 
-  ngOnInit(): void {
-    if (this.testId)
-      this.tasks$ = this._taskService.getTaskByTestId(this.testId).pipe(take(1));
+  form = this._fb.group({
+    name: '',
+    description: '',
+    type: this.types[0],
+    correct: null as string | null,
+  });
+
+  answers: FormControl[] = [];
+
+  type$ = this.form.valueChanges.pipe(map((e) => e.type?.value));
+
+  constructor(private readonly _fb: FormBuilder, destroy$: TuiDestroyService) {
+    for (const name in this.form.controls) {
+      this.form
+        .get(name)
+        ?.valueChanges.pipe(takeUntil(destroy$))
+        .subscribe((value) => {
+          if (name === 'type') {
+            this.changed.emit({ [name]: value.value });
+          } else {
+            this.changed.emit({ [name]: value });
+          }
+        });
+    }
   }
 
-  form = new FormGroup({
-    name: new FormControl(''),
-    description: new FormControl(''),
-    type: new FormControl('multi'),
-  });
+  ngOnChanges() {
+    this._fillForm(this.task);
+  }
+
+  private _fillForm(task: Partial<Task>) {
+    this.form.patchValue(
+      {
+        name: task.name,
+        description: task.description,
+        type: task?.type
+          ? { value: task.type, label: TASK_TYPE_LABELS[task.type] }
+          : undefined,
+      },
+      { emitEvent: false }
+    );
+    this.answers = (this.task.answers || []).map((answer) =>
+      this._fb.control(answer)
+    );
+  }
 }

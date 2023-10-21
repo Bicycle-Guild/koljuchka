@@ -1,9 +1,11 @@
 <div class="container">
   <div class="wrapper">
     <div class="left">
-      <div *ngIf="test$ | async as test">
-        <app-tasks-edit [testId]="test.id"></app-tasks-edit>
-      </div>
+      <app-task-edit
+        *ngFor="let task of tasks$ | async"
+        [task]="task"
+        (changed)="changeTask($event)"
+      ></app-task-edit>
     </div>
     <div class="right">
       <form class="form" [formGroup]="form">
@@ -13,7 +15,7 @@
         </tui-input>
         <tui-textarea formControlName="description">Описание</tui-textarea>
         <tui-select [valueContent]="typeContent" formControlName="type">
-          Выберите тип теста
+          Тип теста
           <tui-data-list-wrapper
             *tuiDataList
             [itemContent]="typeContent"

@@ -44,6 +44,9 @@ import {
   TuiInputTimeModule,
   TuiBadgeModule,
   TuiTagModule,
+  TuiRadioBlockModule,
+  TuiRadioModule,
+  TuiCheckboxModule,
 } from '@taiga-ui/kit';
 
 export const UImodules = [
@@ -89,4 +92,7 @@ export const UImodules = [
   TuiTagModule,
   TuiAutoFocusModule,
   TuiLetModule,
+  TuiRadioBlockModule,
+  TuiRadioModule,
+  TuiCheckboxModule,
 ];

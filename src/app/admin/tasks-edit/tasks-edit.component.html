@@ -1,10 +1,63 @@
-<div *ngIf="tasks$ | async as tasks">
-  <div *ngFor="let task of tasks">
-      <p>{{ task.title }}</p>
-      <p>{{ task.description }}</p>
-      <p>{{ task.type }}</p>
-      <div *ngFor="let answer of task.answers">
-        <p>{{ answer.value }}</p>
+<form class="form" [formGroup]="form">
+  <tui-input tuiTextfieldSize="m" formControlName="name">
+    Название
+    <input tuiTextfield />
+  </tui-input>
+
+  <tui-input tuiTextfieldSize="m" formControlName="description">
+    Название
+    <input tuiTextfield />
+  </tui-input>
+
+  <tui-select
+    tuiTextfieldSize="m"
+    [valueContent]="typeContent"
+    formControlName="type"
+  >
+    Тип задания
+    <tui-data-list-wrapper
+      *tuiDataList
+      [itemContent]="typeContent"
+      [items]="types"
+    >
+    </tui-data-list-wrapper>
+  </tui-select>
+  <ng-template #typeContent let-item>
+    {{ item.label }}
+  </ng-template>
+
+  <ng-container *ngIf="type$ | async as type">
+    <div class="answers">
+      <div *ngFor="let answer of answers" class="answer">
+        <ng-container [ngSwitch]="type">
+          <tui-radio
+            *ngSwitchCase="'single'"
+            formControlName="correct"
+            [item]="[answer.value]"
+          ></tui-radio>
+          <tui-checkbox
+            *ngSwitchCase="'multi'"
+            formControlName="correct"
+          ></tui-checkbox>
+        </ng-container>
+        <tui-input
+          class="answer-input"
+          [formControl]="answer"
+          tuiTextfieldSize="s"
+        >
+          <input tuiTextfield />
+        </tui-input>
+        <button
+          tuiIconButton
+          icon="tuiIconClose"
+          size="xs"
+          appearance="secondary"
+        ></button>
       </div>
+    </div>
+  </ng-container>
+
+  <div *ngFor="let answer of task.answers">
+    <p>{{ answer }}</p>
   </div>
-</div>
+</form>
