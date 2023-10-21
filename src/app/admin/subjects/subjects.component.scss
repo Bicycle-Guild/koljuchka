@@ -1,0 +1,9 @@
+.subject-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    max-width: 1262px;
+    width: 100%;
+    margin-left: 130px;
+    margin-right: 134px;
+}
